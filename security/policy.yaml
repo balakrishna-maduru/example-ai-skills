@@ -1,0 +1,56 @@
+apiVersion: security/v1
+
+skill:
+  id: jira.create_ticket
+  version: 2.1.0
+
+
+risk:
+  level: medium
+
+
+authorization:
+
+  roles:
+
+    engineering-agent:
+      allow:
+        - jira.issue.create
+
+    project-manager-agent:
+      allow:
+        - jira.issue.create
+
+    finance-agent:
+      deny:
+        - jira.issue.create
+
+
+approval:
+
+  required: false
+
+
+secrets:
+
+  allowed:
+    - jira.api
+
+
+network:
+
+  allow:
+    - "*.atlassian.net"
+
+
+execution:
+
+  sandbox:
+    required: true
+
+  timeout_seconds: 30
+
+
+audit:
+
+  required: true
