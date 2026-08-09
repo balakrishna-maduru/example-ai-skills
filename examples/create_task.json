@@ -1,0 +1,15 @@
+{
+  "project": "ENG",
+
+  "summary": "Update authentication documentation",
+
+  "description": "Update the authentication troubleshooting guide.",
+
+  "issue_type": "Task",
+
+  "priority": "Medium",
+
+  "labels": [
+    "documentation"
+  ]
+}
