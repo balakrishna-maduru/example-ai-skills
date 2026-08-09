@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+
+  "type": "object",
+
+  "required": [
+    "success",
+    "issue_key",
+    "issue_url"
+  ],
+
+  "properties": {
+
+    "success": {
+      "type": "boolean"
+    },
+
+    "issue_key": {
+      "type": "string"
+    },
+
+    "issue_url": {
+      "type": "string",
+      "format": "uri"
+    }
+  }
+}

@@ -1,0 +1,42 @@
+apiVersion: connectors/v1
+
+kind: ConnectorRequirement
+
+metadata:
+  id: jira
+  version: "1.0"
+
+
+provider:
+  type: jira
+
+
+capabilities:
+
+  required:
+    - jira.issue.create
+
+
+authentication:
+
+  type: secret_reference
+
+  secret:
+    name: jira.api
+
+
+network:
+
+  allowed_domains:
+    - "*.atlassian.net"
+
+
+operations:
+
+  allowed:
+    - create_issue
+
+  denied:
+    - delete_issue
+    - delete_project
+    - modify_permissions

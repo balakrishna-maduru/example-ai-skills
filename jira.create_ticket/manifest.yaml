@@ -1,0 +1,153 @@
+apiVersion: skills/v1
+
+kind: Skill
+
+metadata:
+  id: jira.create_ticket
+  name: Create Jira Ticket
+  version: 2.1.0
+
+  description: >
+    Creates a Jira issue from structured input and returns
+    the created issue details.
+
+  owner:
+    team: engineering-platform
+
+  tags:
+    - jira
+    - issue-management
+    - project-management
+    - ticket
+
+spec:
+
+  capabilities:
+
+    provides:
+      - jira.issue.create
+
+    requires:
+      - jira.issue.write
+
+  inputs:
+
+    schema: schemas/input.json
+
+  outputs:
+
+    schema: schemas/output.json
+
+
+  runtime:
+
+    language: python
+    version: ">=3.11"
+
+    timeout_seconds: 30
+
+    sandbox:
+      required: true
+
+
+  connectors:
+
+    jira:
+      provider: jira
+      version: ">=9,<12"
+
+
+  model_requirements:
+
+    capabilities:
+      tool_calling: required
+      structured_output: required
+
+    context_window:
+      minimum: 16000
+
+    reasoning:
+      minimum: medium
+
+
+  compatibility:
+
+    operating_system:
+      - linux
+
+    architecture:
+      - amd64
+      - arm64
+
+
+  security:
+
+    risk_level: medium
+
+    permissions:
+
+      required:
+        - jira.issue.write
+
+    secrets:
+
+      required:
+        - jira.production.api
+
+    network:
+
+      allow:
+        - "*.atlassian.net"
+
+    filesystem:
+      mode: isolated
+
+    tenant_isolation:
+      required: true
+
+    signature:
+      required: true
+
+    audit:
+      required: true
+
+    approval:
+
+      required: false
+
+      conditions:
+
+        - when: "project in restricted_projects"
+          action: require_approval
+
+
+  testing:
+
+    required:
+
+      - static
+      - unit
+      - integration
+      - regression
+
+    certification:
+      required: true
+
+
+  observability:
+
+    enabled: true
+
+    metrics:
+
+      - invocation_count
+      - success_rate
+      - failure_rate
+      - latency
+      - retry_count
+      - token_usage
+      - cost
+      - error_type
+
+    tracing:
+      enabled: true

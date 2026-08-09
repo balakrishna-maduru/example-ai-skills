@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+
+  "type": "object",
+
+  "required": [
+    "project",
+    "summary",
+    "issue_type"
+  ],
+
+  "properties": {
+
+    "project": {
+      "type": "string",
+      "minLength": 1
+    },
+
+    "summary": {
+      "type": "string",
+      "minLength": 5,
+      "maxLength": 255
+    },
+
+    "description": {
+      "type": "string",
+      "maxLength": 10000
+    },
+
+    "issue_type": {
+      "type": "string",
+      "enum": [
+        "Bug",
+        "Task",
+        "Story"
+      ]
+    },
+
+    "priority": {
+      "type": "string",
+      "enum": [
+        "Low",
+        "Medium",
+        "High",
+        "Critical"
+      ]
+    },
+
+    "labels": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

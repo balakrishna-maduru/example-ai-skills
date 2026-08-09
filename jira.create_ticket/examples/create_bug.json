@@ -1,0 +1,16 @@
+{
+  "project": "ENG",
+
+  "summary": "Login fails after password reset",
+
+  "description": "Users receive an error after resetting their password.",
+
+  "issue_type": "Bug",
+
+  "priority": "High",
+
+  "labels": [
+    "authentication",
+    "production"
+  ]
+}
